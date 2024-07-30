@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Calculator</title>
+    <script>
+        function calculateSum() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const n = parseInt(urlParams.get('n'));
+            if (isNaN(n)) {
+                document.getElementById('result').textContent = 'Invalid input';
+                return;
+            }
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            document.getElementById('result').textContent = 'The sum of numbers from 1 to ' + n + ' is ' + sum;
+        }
+    </script>
+</head>
+<body onload="calculateSum()">
+    <h1>Sum Calculator</h1>
+    <p id="result">Calculating...</p>
+</body>
+</html>
