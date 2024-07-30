@@ -17,13 +17,14 @@
             for (let i = 1; i <= n; i++) {
                 sum += i;
             }
-            document.getElementById('result').textContent = 'Sum of numbers from 1 to ' + n + ' is ' + sum;
+            document.getElementById('result').textContent = 'The sum of numbers from 1 to ' + n + ' is ' + sum;
             sendResultToTelegram(sum);
         }
 
         function sendResultToTelegram(sum) {
             const telegram = window.Telegram.WebApp;
             telegram.sendData(`The sum of numbers from 1 to ${new URLSearchParams(window.location.search).get('n')} is ${sum}`);
+            console.log("Data sent to Telegram:", `The sum of numbers from 1 to ${new URLSearchParams(window.location.search).get('n')} is ${sum}`);
         }
     </script>
 </head>
