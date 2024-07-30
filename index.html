@@ -23,8 +23,25 @@
 
         function sendResultToTelegram(sum) {
             const telegram = window.Telegram.WebApp;
-            telegram.sendData(`The sum of numbers from 1 to ${new URLSearchParams(window.location.search).get('n')} is ${sum}`);
-            console.log("Data sent to Telegram:", `The sum of numbers from 1 to ${new URLSearchParams(window.location.search).get('n')} is ${sum}`);
+            const message = `The sum of numbers from 1 to ${new URLSearchParams(window.location.search).get('n')} is ${sum}`;
+            telegram.sendData(message);
+
+            // Отправляем данные напрямую на сервер бота
+            const botServerUrl = 'http://localhost:5000/process_result';
+            fetch(botServerUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ result: message })
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log('Data sent to server:', message);
+            }).catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
         }
     </script>
 </head>
