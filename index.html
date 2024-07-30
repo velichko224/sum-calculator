@@ -27,7 +27,7 @@
             telegram.sendData(message);
 
             // Отправляем данные напрямую на сервер бота
-            const botServerUrl = 'http://127.0.0.1:5000/process_result';
+            const botServerUrl = 'http://localhost:5000/process_result';
             fetch(botServerUrl, {
                 method: 'POST',
                 headers: {
